@@ -10,7 +10,7 @@ CFLAGS += -Wall -Wextra -pthread -g
 
 OBJS = $(addprefix $(OBJDIR)/, $(SRC:.c=.o))
 
-SRC = main.c
+SRC = main.c argument_validation.c
 
 $(OBJDIR)/%.o: %.c
 	$(COMPILE.c) $(OUTPUT_OPTION) $<
