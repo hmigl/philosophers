@@ -22,6 +22,18 @@ static void	store_dinner_info(t_dinner *dinner, char **argv)
 		dinner->max_meals = ft_atoi(argv[4]);
 }
 
+static void	dine(int nb_of_philosophers)
+{
+	int	i;
+
+	i = -1;
+	while (++i < nb_of_philosophers)
+		;
+	i = -1;
+	while (++i < nb_of_philosophers)
+		;
+}
+
 int	main(int argc, char *argv[])
 {
 	t_dinner	dinner;
@@ -29,5 +41,8 @@ int	main(int argc, char *argv[])
 	if (!has_valid_arguments(argc, argv + 1))
 		return (rtfm());
 	store_dinner_info(&dinner, argv + 1);
+	// set_table(&dinner);
+	dine(dinner.nb_of_philosophers);
+	// unset_table(&dinner);
 	return (0);
 }

@@ -5,13 +5,21 @@
 # include <unistd.h>
 
 typedef struct s_philo_dinner	t_dinner;
+typedef struct s_philo			t_philo;
+
+struct s_philo {
+	int				id;
+	struct s_philo	*prev;
+	struct s_philo	*next;
+};
 
 struct s_philo_dinner {
-	int	nb_of_philosophers;
-	int	time_to_die;
-	int	time_to_eat;
-	int	time_to_sleep;
-	int	max_meals;
+	int		nb_of_philosophers;
+	int		time_to_die;
+	int		time_to_eat;
+	int		time_to_sleep;
+	int		max_meals;
+	t_philo	*philo_list;
 };
 
 int	has_valid_arguments(int argc, char **argv);
