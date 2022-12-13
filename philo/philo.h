@@ -2,6 +2,7 @@
 # define PHILO_H
 
 # include <stdlib.h>
+# include <unistd.h>
 
 typedef struct s_philo_dinner	t_dinner;
 
