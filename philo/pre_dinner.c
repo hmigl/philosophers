@@ -2,5 +2,5 @@
 
 void set_table(t_dinner *dinner)
 {
-	dinner->philo_list = NULL;
+	dinner->list_of_philos = new_list(dinner);
 }

@@ -41,7 +41,7 @@ int	main(int argc, char *argv[])
 	if (!has_valid_arguments(argc, argv + 1))
 		return (rtfm());
 	store_dinner_info(&dinner, argv + 1);
-	// set_table(&dinner);
+	set_table(&dinner);
 	dine(dinner.nb_of_philosophers);
 	// unset_table(&dinner);
 	return (0);
