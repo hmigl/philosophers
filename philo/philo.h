@@ -13,6 +13,7 @@ struct s_philo {
 	struct s_philo	*prev;
 	struct s_philo	*next;
 	pthread_mutex_t	spaghetti_fork;
+	pthread_t		thread;
 
 };
 
@@ -25,9 +26,15 @@ struct s_philo_dinner {
 	t_philo	*list_of_philos;
 };
 
+// validation
 int		has_valid_arguments(int argc, char **argv);
+
+// data structures management
 void	set_table(t_dinner *dinner);
 t_philo	*new_list(t_dinner *dinner);
+
+// routine
+void	*start_routine(void *arg);
 
 // utils
 int		ft_isnumber(char *number);

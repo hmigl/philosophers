@@ -12,7 +12,8 @@ OBJS = $(addprefix $(OBJDIR)/, $(SRC:.c=.o))
 
 SRC = main.c \
 	  argument_validation.c utils_argument_validation.c \
-	  pre_dinner.c utils_list.c
+	  pre_dinner.c utils_list.c \
+	  routine.c
 
 $(OBJDIR)/%.o: %.c
 	$(COMPILE.c) $(OUTPUT_OPTION) $<

@@ -22,13 +22,18 @@ static void	store_dinner_info(t_dinner *dinner, char **argv)
 		dinner->max_meals = ft_atoi(argv[4]);
 }
 
-static void	dine(int nb_of_philosophers)
+static void	dine(int nb_of_philosophers, t_philo *list_of_philos)
 {
-	int	i;
+	int		i;
+	t_philo	*philo;
 
 	i = -1;
+	philo = list_of_philos;
 	while (++i < nb_of_philosophers)
-		;
+	{
+		pthread_create(&(philo->thread), NULL, &start_routine, (void *)philo);
+		philo = philo->next;
+	}
 	i = -1;
 	while (++i < nb_of_philosophers)
 		;
@@ -42,7 +47,7 @@ int	main(int argc, char *argv[])
 		return (rtfm());
 	store_dinner_info(&dinner, argv + 1);
 	set_table(&dinner);
-	dine(dinner.nb_of_philosophers);
+	dine(dinner.nb_of_philosophers, dinner.list_of_philos);
 	// unset_table(&dinner);
 	return (0);
 }
