@@ -3,6 +3,7 @@
 
 # include <stdlib.h>
 # include <unistd.h>
+# include <pthread.h>
 
 typedef struct s_philo_dinner	t_dinner;
 typedef struct s_philo			t_philo;
@@ -11,6 +12,8 @@ struct s_philo {
 	int				id;
 	struct s_philo	*prev;
 	struct s_philo	*next;
+	pthread_mutex_t	spaghetti_fork;
+
 };
 
 struct s_philo_dinner {

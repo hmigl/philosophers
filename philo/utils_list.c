@@ -10,6 +10,7 @@ static t_philo	*lst_new(int id, t_dinner *dinner)
 	philo->id = id + 1;
 	philo->prev = philo;
 	philo->next = philo;
+	pthread_mutex_init(&philo->spaghetti_fork, NULL);
 	return (philo);
 }
 
