@@ -10,12 +10,12 @@ static void	join_threads(t_dinner *dinner)
 	while (++i < dinner->nb_of_philosophers)
 	{
 		pthread_join(philo->thread, NULL);
-		philo = philo->prev;
+		philo = philo->next;
 	}
 }
 
 void	unset_table(t_dinner *dinner)
 {
-	// clear_list();
 	join_threads(dinner);
+	clear_list(dinner);
 }

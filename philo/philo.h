@@ -33,6 +33,7 @@ int		has_valid_arguments(int argc, char **argv);
 void	set_table(t_dinner *dinner);
 t_philo	*new_list(t_dinner *dinner);
 void	unset_table(t_dinner *dinner);
+void	clear_list(t_dinner *dinner);
 
 // routine
 void	*start_routine(void *arg);

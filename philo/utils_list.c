@@ -41,3 +41,18 @@ t_philo	*new_list(t_dinner *dinner)
 		lst_add_end(&list_of_philos, lst_new(id, dinner));
 	return (list_of_philos);
 }
+
+void	clear_list(t_dinner *dinner)
+{
+	int		i;
+	t_philo	*tmp;
+
+	i = -1;
+	while (++i < dinner->nb_of_philosophers)
+	{
+		tmp = dinner->list_of_philos;
+		dinner->list_of_philos = dinner->list_of_philos->next;
+		free(tmp);
+		tmp = NULL;
+	}
+}
