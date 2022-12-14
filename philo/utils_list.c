@@ -1,6 +1,6 @@
 #include "philo.h"
 
-static t_philo	*lst_new(int id, t_dinner *dinner)
+static t_philo	*new_philo(int id, t_dinner *dinner)
 {
 	t_philo	*philo;
 
@@ -38,7 +38,7 @@ t_philo	*new_list(t_dinner *dinner)
 	list_of_philos = NULL;
 	id = -1;
 	while (++id < dinner->nb_of_philosophers)
-		lst_add_end(&list_of_philos, lst_new(id, dinner));
+		lst_add_end(&list_of_philos, new_philo(id, dinner));
 	return (list_of_philos);
 }
 
