@@ -19,12 +19,14 @@ struct s_philo {
 };
 
 struct s_philo_dinner {
-	int		nb_of_philosophers;
-	int		time_to_die;
-	int		time_to_eat;
-	int		time_to_sleep;
-	int		max_meals;
-	t_philo	*list_of_philos;
+	int				nb_of_philosophers;
+	int				time_to_die;
+	int				time_to_eat;
+	int				time_to_sleep;
+	int				max_meals;
+	int				all_guests_alive;
+	t_philo			*list_of_philos;
+	pthread_mutex_t	must_end_mutex;
 };
 
 // validation
