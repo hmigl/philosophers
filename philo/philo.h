@@ -10,11 +10,12 @@ typedef struct s_philo			t_philo;
 
 struct s_philo {
 	int				id;
-	struct s_philo	*prev;
-	struct s_philo	*next;
+	t_dinner		*dinner;
+	int				meals;
 	pthread_mutex_t	spaghetti_fork;
 	pthread_t		thread;
-
+	struct s_philo	*prev;
+	struct s_philo	*next;
 };
 
 struct s_philo_dinner {
