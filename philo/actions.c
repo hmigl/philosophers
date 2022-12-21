@@ -38,6 +38,16 @@ static void	die_using_ceil_timestamp(t_philo *philo)
 	dinner_log(philo, DIE);
 }
 
+static void	eat(t_philo *philo)
+{
+	dinner_log(philo, EAT);
+	usleep(philo->dinner->time_to_eat * 1000);
+	philo->meals++;
+	// TODO: read last meal time
+	pthread_mutex_unlock(&(philo->spaghetti_fork));
+	pthread_mutex_unlock(&(philo->next->spaghetti_fork));
+}
+
 void	eating_action(t_philo *philo)
 {
 	if (!grab_fork(left, philo))
@@ -46,4 +56,6 @@ void	eating_action(t_philo *philo)
 		return ;
 	if (philo->dinner->time_to_eat > philo->dinner->time_to_die)
 		return (die_using_ceil_timestamp(philo));
+	else
+		return eat(philo);
 }
