@@ -27,6 +27,8 @@ void	*start_routine(void *arg)
 	t_philo	*philo;
 
 	philo = (struct s_philo *)arg;
+	if (philo->id % 2 == 0)
+		usleep(1000);
 	while (philo->dinner->everybody_alive)
 	{
 		eating_action(philo);
