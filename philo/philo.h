@@ -48,9 +48,12 @@ void	clear_list(t_dinner *dinner);
 
 // business logic
 void	*start_routine(void *arg);
+
 int		dinner_must_end(t_philo *philo);
-void	eating_action(t_philo *philo);
+void	end_dinner(t_philo *philo);
 void	dinner_log(t_philo *philo, char *action);
+
+void	eating_action(t_philo *philo);
 
 // utils
 int		ft_isnumber(char *number);

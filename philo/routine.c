@@ -15,6 +15,13 @@ int	dinner_must_end(t_philo *philo)
 	return (dinner_must_end);
 }
 
+void	end_dinner(t_philo *philo)
+{
+	pthread_mutex_lock(&(philo->dinner->everybody_alive_mutex));
+	philo->dinner->everybody_alive = 0;
+	pthread_mutex_unlock(&(philo->dinner->everybody_alive_mutex));
+}
+
 void	*start_routine(void *arg)
 {
 	t_philo	*philo;
