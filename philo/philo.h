@@ -42,7 +42,6 @@ struct s_philo_dinner {
 int		has_valid_arguments(int argc, char **argv);
 
 // data structures management
-void	set_table(t_dinner *dinner);
 t_philo	*new_list(t_dinner *dinner);
 void	unset_table(t_dinner *dinner);
 void	clear_list(t_dinner *dinner);
