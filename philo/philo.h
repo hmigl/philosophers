@@ -4,6 +4,14 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <pthread.h>
+# include <stdio.h>
+
+# define OUTPUT_TEMPLATE "%d %d %s\n"
+# define FORK "has taken a fork"
+# define EAT "is eating"
+# define THINK "is thinking"
+# define SLEEP "is sleeping"
+# define DIE "died"
 
 typedef struct s_philo_dinner	t_dinner;
 typedef struct s_philo			t_philo;
@@ -27,6 +35,7 @@ struct s_philo_dinner {
 	int				everybody_alive;
 	t_philo			*list_of_philos;
 	pthread_mutex_t	everybody_alive_mutex;
+	pthread_mutex_t	log_mutex;
 };
 
 // validation
@@ -42,6 +51,7 @@ void	clear_list(t_dinner *dinner);
 void	*start_routine(void *arg);
 int		dinner_must_end(t_philo *philo);
 void	eating_action(t_philo *philo);
+void	dinner_log(t_philo *philo, char *action);
 
 // utils
 int		ft_isnumber(char *number);

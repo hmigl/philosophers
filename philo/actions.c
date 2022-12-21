@@ -24,7 +24,7 @@ static int	grab_fork(enum e_fork fork, t_philo *philo)
 		pthread_mutex_lock(&(philo->spaghetti_fork));
 	else
 		pthread_mutex_lock(&(philo->next->spaghetti_fork));
-	// has_taken_a_fork
+	dinner_log(philo, FORK);
 	return (had_to_release(fork, philo));
 }
 
