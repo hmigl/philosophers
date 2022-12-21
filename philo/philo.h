@@ -24,9 +24,9 @@ struct s_philo_dinner {
 	int				time_to_eat;
 	int				time_to_sleep;
 	int				max_meals;
-	int				all_guests_alive;
+	int				everybody_alive;
 	t_philo			*list_of_philos;
-	pthread_mutex_t	must_end_mutex;
+	pthread_mutex_t	everybody_alive_mutex;
 };
 
 // validation
@@ -38,8 +38,10 @@ t_philo	*new_list(t_dinner *dinner);
 void	unset_table(t_dinner *dinner);
 void	clear_list(t_dinner *dinner);
 
-// routine
+// business logic
 void	*start_routine(void *arg);
+int		dinner_must_end(t_philo *philo);
+void	eating_action(t_philo *philo);
 
 // utils
 int		ft_isnumber(char *number);

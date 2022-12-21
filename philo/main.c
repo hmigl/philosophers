@@ -20,7 +20,7 @@ static void	store_dinner_info(t_dinner *dinner, char **argv)
 	dinner->max_meals = -2147483648;
 	if (argv[4])
 		dinner->max_meals = ft_atoi(argv[4]);
-	dinner->all_guests_alive = 1;
+	dinner->everybody_alive = 1;
 }
 
 static void	dine(t_dinner *dinner)

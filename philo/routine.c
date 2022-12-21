@@ -1,20 +1,30 @@
 #include "philo.h"
 
-static int	still_not_satisfied(t_philo *philo)
+static int	is_satisfied(t_philo *philo)
 {
-	return (philo->meals < philo->dinner->max_meals);
+	return (philo->meals == philo->dinner->max_meals);
+}
+
+int	dinner_must_end(t_philo *philo)
+{
+	int	dinner_must_end;
+
+	pthread_mutex_lock(&(philo->dinner->everybody_alive_mutex));
+	dinner_must_end = !(philo->dinner->everybody_alive);
+	pthread_mutex_unlock(&(philo->dinner->everybody_alive_mutex));
+	return (dinner_must_end);
 }
 
 void	*start_routine(void *arg)
 {
 	t_philo	*philo;
-	int		eating_nonstop;
 
 	philo = (struct s_philo *)arg;
-	eating_nonstop = philo->dinner->max_meals < 0;
-	while (eating_nonstop || (!eating_nonstop && still_not_satisfied(philo)))
+	while (philo->dinner->everybody_alive)
 	{
-		;
+		eating_action(philo);
+		if (is_satisfied(philo))
+			break ;
 	}
 	return (NULL);
 }
