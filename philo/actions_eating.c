@@ -4,7 +4,7 @@ enum e_fork {left, right};
 
 static int	had_to_release(enum e_fork fork, t_philo *philo)
 {
-	if (!dinner_must_end(philo))
+	if (!get_dinner_must_end(philo))
 		return (1);
 	if (fork == left)
 		pthread_mutex_unlock(&(philo->spaghetti_fork));
@@ -18,7 +18,7 @@ static int	had_to_release(enum e_fork fork, t_philo *philo)
 
 static int	grab_fork(enum e_fork fork, t_philo *philo)
 {
-	if (dinner_must_end(philo))
+	if (get_dinner_must_end(philo))
 		return (0);
 	if (fork == left)
 		pthread_mutex_lock(&(philo->spaghetti_fork));
@@ -34,7 +34,7 @@ static void	die_using_ceil_timestamp(t_philo *philo)
 
 	ceil_timestamp = philo->dinner->time_to_die * 1000;
 	usleep(ceil_timestamp);
-	end_dinner(philo);
+	set_dinner_must_end(philo);
 	dinner_log(philo, DIE);
 }
 

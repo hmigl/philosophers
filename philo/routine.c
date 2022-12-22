@@ -5,7 +5,7 @@ static int	is_satisfied(t_philo *philo)
 	return (philo->meals == philo->dinner->max_meals);
 }
 
-int	dinner_must_end(t_philo *philo)
+int	get_dinner_must_end(t_philo *philo)
 {
 	int	dinner_must_end;
 
@@ -15,7 +15,7 @@ int	dinner_must_end(t_philo *philo)
 	return (dinner_must_end);
 }
 
-void	end_dinner(t_philo *philo)
+void	set_dinner_must_end(t_philo *philo)
 {
 	pthread_mutex_lock(&(philo->dinner->everybody_alive_mutex));
 	philo->dinner->everybody_alive = 0;

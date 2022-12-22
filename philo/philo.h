@@ -51,8 +51,8 @@ void			clear_list(t_dinner *dinner);
 
 // business logic
 void			*start_routine(void *arg);
-int				dinner_must_end(t_philo *philo);
-void			end_dinner(t_philo *philo);
+int				get_dinner_must_end(t_philo *philo);
+void			set_dinner_must_end(t_philo *philo);
 void			eating_action(t_philo *philo);
 
 // log

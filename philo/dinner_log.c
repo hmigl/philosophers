@@ -13,7 +13,7 @@ void	dinner_log(t_philo *philo, char *action)
 {
 	long	ts;
 
-	if (dinner_must_end(philo))
+	if (get_dinner_must_end(philo))
 		return ;
 	pthread_mutex_lock(&(philo->dinner->log_mutex));
 	ts = get_time_in_ms_since_event(philo->dinner->elapsed_time_dinner_started);
