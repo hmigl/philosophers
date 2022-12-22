@@ -5,6 +5,7 @@
 # include <unistd.h>
 # include <pthread.h>
 # include <stdio.h>
+# include <sys/time.h>
 
 # define OUTPUT_TEMPLATE "%d %d %s\n"
 # define FORK "has taken a fork"
@@ -20,6 +21,7 @@ struct s_philo {
 	int				id;
 	t_dinner		*dinner;
 	int				meals;
+	struct timeval	last_meal;
 	pthread_mutex_t	spaghetti_fork;
 	pthread_t		thread;
 	struct s_philo	*prev;
@@ -33,6 +35,7 @@ struct s_philo_dinner {
 	int				time_to_sleep;
 	int				max_meals;
 	int				everybody_alive;
+	struct timeval	elapsed_time_dinner_started;
 	t_philo			*list_of_philos;
 	pthread_mutex_t	everybody_alive_mutex;
 	pthread_mutex_t	log_mutex;

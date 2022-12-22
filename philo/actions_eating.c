@@ -41,9 +41,9 @@ static void	die_using_ceil_timestamp(t_philo *philo)
 static void	eat(t_philo *philo)
 {
 	dinner_log(philo, EAT);
-	usleep(philo->dinner->time_to_eat * 1000);
 	philo->meals++;
-	// TODO: read last meal time
+	gettimeofday(&(philo->last_meal), NULL);
+	usleep(philo->dinner->time_to_eat * 1000);
 	pthread_mutex_unlock(&(philo->spaghetti_fork));
 	pthread_mutex_unlock(&(philo->next->spaghetti_fork));
 }

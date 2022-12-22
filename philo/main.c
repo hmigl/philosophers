@@ -25,6 +25,7 @@ static void	store_dinner_info(t_dinner *dinner, char **argv)
 
 static void	set_table(t_dinner *dinner)
 {
+	gettimeofday(&(dinner->elapsed_time_dinner_started), NULL);
 	dinner->list_of_philos = new_list(dinner);
 	pthread_mutex_init(&(dinner->everybody_alive_mutex), NULL);
 	pthread_mutex_init(&(dinner->log_mutex), NULL);

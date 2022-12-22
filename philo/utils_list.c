@@ -12,6 +12,7 @@ static t_philo	*new_philo(int id, t_dinner *dinner)
 	philo->next = philo;
 	philo->meals = 0;
 	philo->dinner = dinner;
+	philo->last_meal = dinner->elapsed_time_dinner_started;
 	pthread_mutex_init(&(philo->spaghetti_fork), NULL);
 	return (philo);
 }
