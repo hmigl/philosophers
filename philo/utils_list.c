@@ -55,6 +55,7 @@ void	clear_list(t_dinner *dinner)
 	{
 		tmp = dinner->list_of_philos;
 		dinner->list_of_philos = dinner->list_of_philos->next;
+		pthread_mutex_destroy(&(tmp->spaghetti_fork));
 		free(tmp);
 		tmp = NULL;
 	}
