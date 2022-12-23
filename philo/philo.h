@@ -39,7 +39,7 @@ struct s_philo_dinner {
 	t_philo			*list_of_philos;
 	pthread_mutex_t	everybody_alive_mutex;
 	pthread_mutex_t	log_mutex;
-	pthread_t		thread;
+	pthread_t		starvation_thread;
 };
 
 // validation

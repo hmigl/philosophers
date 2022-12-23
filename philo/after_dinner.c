@@ -12,7 +12,7 @@ static void	join_threads(t_dinner *dinner)
 		pthread_join(philo->thread, NULL);
 		philo = philo->next;
 	}
-	pthread_join(dinner->thread, NULL);
+	pthread_join(dinner->starvation_thread, NULL);
 }
 
 void	unset_table(t_dinner *dinner)
