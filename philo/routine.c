@@ -33,7 +33,7 @@ void	*start_routine(void *arg)
 	if (philo->dinner->nb_of_philosophers == 1)
 		return (dine_alone(philo));
 	if (philo->id % 2 == 0)
-		usleep(100);
+		usleep(1000);
 	while (philo->dinner->everybody_alive)
 	{
 		eating_action(philo);
@@ -41,6 +41,7 @@ void	*start_routine(void *arg)
 			break ;
 		sleeping_action(philo);
 	}
+	philo->dinner->nb_of_philos_who_already_ate++;
 	return (NULL);
 }
 
@@ -51,6 +52,9 @@ void	*death_routine(void *arg)
 	philo = (struct s_philo *)arg;
 	while (philo->dinner->everybody_alive)
 	{
+		if (philo->dinner->nb_of_philos_who_already_ate
+			== philo->dinner->nb_of_philosophers)
+			break ;
 		if (get_time_in_ms_since_event(philo->last_meal)
 			>= philo->dinner->time_to_die)
 		{
