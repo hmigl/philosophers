@@ -30,12 +30,12 @@ static int	grab_fork(enum e_fork fork, t_philo *philo)
 
 static void	die_using_ceil_timestamp(t_philo *philo)
 {
-	size_t	ceil_timestamp;
+	long	ceil_timestamp;
 
 	ceil_timestamp = philo->dinner->time_to_die * 1000;
 	usleep(ceil_timestamp);
-	set_dinner_must_end(philo);
 	dinner_log(philo, DIE);
+	set_dinner_must_end(philo);
 }
 
 static void	eat(t_philo *philo)
@@ -44,18 +44,25 @@ static void	eat(t_philo *philo)
 	philo->meals++;
 	gettimeofday(&(philo->last_meal), NULL);
 	usleep(philo->dinner->time_to_eat * 1000);
-	pthread_mutex_unlock(&(philo->spaghetti_fork));
-	pthread_mutex_unlock(&(philo->next->spaghetti_fork));
 }
 
 void	eating_action(t_philo *philo)
 {
+	if (get_time_in_ms_since_event(philo->last_meal) \
+			>= philo->dinner->time_to_die)
+	{
+		dinner_log(philo, DIE);
+		set_dinner_must_end(philo);
+		return ;
+	}
 	if (!grab_fork(left, philo))
 		return ;
 	if (!grab_fork(right, philo))
 		return ;
 	if (philo->dinner->time_to_eat > philo->dinner->time_to_die)
-		return (die_using_ceil_timestamp(philo));
+		die_using_ceil_timestamp(philo);
 	else
-		return eat(philo);
+		eat(philo);
+	pthread_mutex_unlock(&(philo->spaghetti_fork));
+	pthread_mutex_unlock(&(philo->next->spaghetti_fork));
 }
