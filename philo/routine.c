@@ -34,39 +34,15 @@ void	*start_routine(void *arg)
 		return (dine_alone(philo));
 	if (philo->id % 2 == 0)
 		usleep(1000);
-	while (philo->dinner->everybody_alive)
+	while (!get_dinner_must_end(philo))
 	{
 		eating_action(philo);
 		if (philo->meals == philo->dinner->max_meals)
 			break ;
 		sleeping_action(philo);
 	}
+	pthread_mutex_lock(&(philo->dinner->satisfaction_mutex));
 	philo->dinner->nb_of_philos_who_already_ate++;
-	return (NULL);
-}
-
-void	*death_routine(void *arg)
-{
-	t_philo	*philo;
-
-	philo = (struct s_philo *)arg;
-	while (philo->dinner->everybody_alive)
-	{
-		if (philo->dinner->nb_of_philos_who_already_ate
-			== philo->dinner->nb_of_philosophers)
-			break ;
-		pthread_mutex_lock(&(philo->last_meal_mutex));
-		if (get_time_in_ms_since_event(philo->last_meal)
-			>= philo->dinner->time_to_die)
-		{
-			dinner_log(philo, DIE);
-			set_dinner_must_end(philo);
-			break ;
-		}
-		pthread_mutex_unlock(&(philo->last_meal_mutex));
-		philo = philo->next;
-		usleep(250);
-	}
-	pthread_mutex_unlock(&(philo->last_meal_mutex));
+	pthread_mutex_unlock(&(philo->dinner->satisfaction_mutex));
 	return (NULL);
 }

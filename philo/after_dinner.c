@@ -21,4 +21,5 @@ void	unset_table(t_dinner *dinner)
 	clear_list(dinner);
 	pthread_mutex_destroy(&(dinner->everybody_alive_mutex));
 	pthread_mutex_destroy(&(dinner->log_mutex));
+	pthread_mutex_destroy(&(dinner->satisfaction_mutex));
 }
