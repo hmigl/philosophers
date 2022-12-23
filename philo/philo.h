@@ -22,6 +22,7 @@ struct s_philo {
 	t_dinner		*dinner;
 	int				meals;
 	struct timeval	last_meal;
+	pthread_mutex_t	last_meal_mutex;
 	pthread_mutex_t	spaghetti_fork;
 	pthread_t		thread;
 	struct s_philo	*prev;

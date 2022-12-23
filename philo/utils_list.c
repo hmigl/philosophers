@@ -14,6 +14,7 @@ static t_philo	*new_philo(int id, t_dinner *dinner)
 	philo->dinner = dinner;
 	philo->last_meal = dinner->elapsed_time_dinner_started;
 	pthread_mutex_init(&(philo->spaghetti_fork), NULL);
+	pthread_mutex_init(&(philo->last_meal_mutex), NULL);
 	return (philo);
 }
 
@@ -56,6 +57,7 @@ void	clear_list(t_dinner *dinner)
 		tmp = dinner->list_of_philos;
 		dinner->list_of_philos = dinner->list_of_philos->next;
 		pthread_mutex_destroy(&(tmp->spaghetti_fork));
+		pthread_mutex_destroy(&(tmp->last_meal_mutex));
 		free(tmp);
 		tmp = NULL;
 	}

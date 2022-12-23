@@ -55,6 +55,7 @@ void	*death_routine(void *arg)
 		if (philo->dinner->nb_of_philos_who_already_ate
 			== philo->dinner->nb_of_philosophers)
 			break ;
+		pthread_mutex_lock(&(philo->last_meal_mutex));
 		if (get_time_in_ms_since_event(philo->last_meal)
 			>= philo->dinner->time_to_die)
 		{
@@ -62,8 +63,10 @@ void	*death_routine(void *arg)
 			set_dinner_must_end(philo);
 			break ;
 		}
+		pthread_mutex_unlock(&(philo->last_meal_mutex));
 		philo = philo->next;
 		usleep(250);
 	}
+	pthread_mutex_unlock(&(philo->last_meal_mutex));
 	return (NULL);
 }

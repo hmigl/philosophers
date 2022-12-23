@@ -42,7 +42,9 @@ static void	eat(t_philo *philo)
 {
 	dinner_log(philo, EAT);
 	philo->meals++;
+	pthread_mutex_lock(&(philo->last_meal_mutex));
 	gettimeofday(&(philo->last_meal), NULL);
+	pthread_mutex_unlock(&(philo->last_meal_mutex));
 	usleep(philo->dinner->time_to_eat * 1000);
 }
 
