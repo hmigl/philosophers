@@ -28,12 +28,13 @@ void	*start_routine(void *arg)
 
 	philo = (struct s_philo *)arg;
 	if (philo->id % 2 == 0)
-		usleep(1000);
+		usleep(100);
 	while (philo->dinner->everybody_alive)
 	{
 		eating_action(philo);
 		if (is_satisfied(philo))
 			break ;
+		sleeping_action(philo);
 	}
 	return (NULL);
 }

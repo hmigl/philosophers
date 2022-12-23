@@ -54,6 +54,7 @@ void			*start_routine(void *arg);
 int				get_dinner_must_end(t_philo *philo);
 void			set_dinner_must_end(t_philo *philo);
 void			eating_action(t_philo *philo);
+void			sleeping_action(t_philo *philo);
 
 // log
 void			dinner_log(t_philo *philo, char *action);
