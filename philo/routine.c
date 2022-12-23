@@ -1,10 +1,5 @@
 #include "philo.h"
 
-static int	is_satisfied(t_philo *philo)
-{
-	return (philo->meals == philo->dinner->max_meals);
-}
-
 int	get_dinner_must_end(t_philo *philo)
 {
 	int	dinner_must_end;
@@ -22,17 +17,27 @@ void	set_dinner_must_end(t_philo *philo)
 	pthread_mutex_unlock(&(philo->dinner->everybody_alive_mutex));
 }
 
+static void	*dine_alone(t_philo *philo)
+{
+	pthread_mutex_lock(&(philo->spaghetti_fork));
+	dinner_log(philo, FORK);
+	pthread_mutex_unlock(&(philo->spaghetti_fork));
+	return (NULL);
+}
+
 void	*start_routine(void *arg)
 {
 	t_philo	*philo;
 
 	philo = (struct s_philo *)arg;
+	if (philo->dinner->nb_of_philosophers == 1)
+		return (dine_alone(philo));
 	if (philo->id % 2 == 0)
 		usleep(100);
 	while (philo->dinner->everybody_alive)
 	{
 		eating_action(philo);
-		if (is_satisfied(philo))
+		if (philo->meals == philo->dinner->max_meals)
 			break ;
 		sleeping_action(philo);
 	}
