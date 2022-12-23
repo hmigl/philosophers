@@ -43,6 +43,7 @@ static void	dine(t_dinner *dinner)
 		pthread_create(&(philo->thread), NULL, &start_routine, (void *)philo);
 		philo = philo->next;
 	}
+	pthread_create(&(dinner->thread), NULL, &death_routine, (void *)philo);
 }
 
 int	main(int argc, char *argv[])

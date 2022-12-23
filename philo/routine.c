@@ -38,3 +38,23 @@ void	*start_routine(void *arg)
 	}
 	return (NULL);
 }
+
+void	*death_routine(void *arg)
+{
+	t_philo	*philo;
+
+	philo = (struct s_philo *)arg;
+	while (philo->dinner->everybody_alive)
+	{
+		if (get_time_in_ms_since_event(philo->last_meal)
+			>= philo->dinner->time_to_die)
+		{
+			dinner_log(philo, DIE);
+			set_dinner_must_end(philo);
+			break ;
+		}
+		philo = philo->next;
+		usleep(250);
+	}
+	return (NULL);
+}

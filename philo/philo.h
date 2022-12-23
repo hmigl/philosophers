@@ -39,6 +39,7 @@ struct s_philo_dinner {
 	t_philo			*list_of_philos;
 	pthread_mutex_t	everybody_alive_mutex;
 	pthread_mutex_t	log_mutex;
+	pthread_t		thread;
 };
 
 // validation
@@ -51,6 +52,7 @@ void			clear_list(t_dinner *dinner);
 
 // business logic
 void			*start_routine(void *arg);
+void			*death_routine(void *arg);
 int				get_dinner_must_end(t_philo *philo);
 void			set_dinner_must_end(t_philo *philo);
 void			eating_action(t_philo *philo);
