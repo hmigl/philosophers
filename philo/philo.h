@@ -36,7 +36,7 @@ struct s_philo_dinner {
 	unsigned int	time_to_sleep;
 	int				max_meals;
 	int				everybody_alive;
-	int				nb_of_philos_who_already_ate;
+	int				satisfied_philos;
 	struct timeval	elapsed_time_dinner_started;
 	t_philo			*list_of_philos;
 	pthread_mutex_t	everybody_alive_mutex;

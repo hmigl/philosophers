@@ -3,7 +3,7 @@
 static int	has_everyone_eaten(t_philo *philo)
 {
 	pthread_mutex_lock(&(philo->dinner->satisfaction_mutex));
-	if (philo->dinner->nb_of_philos_who_already_ate
+	if (philo->dinner->satisfied_philos
 		== philo->dinner->nb_of_philosophers)
 		return (1);
 	return (0);

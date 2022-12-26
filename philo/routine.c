@@ -42,7 +42,7 @@ void	*start_routine(void *arg)
 		sleeping_action(philo);
 	}
 	pthread_mutex_lock(&(philo->dinner->satisfaction_mutex));
-	philo->dinner->nb_of_philos_who_already_ate++;
+	philo->dinner->satisfied_philos++;
 	pthread_mutex_unlock(&(philo->dinner->satisfaction_mutex));
 	return (NULL);
 }
