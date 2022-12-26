@@ -4,6 +4,7 @@ NAME := philo
 OBJDIR := objdir
 
 CFLAGS += -Wall -Wextra -Werror -pthread -g
+LDLIBS += -pthread
 
 OBJS = $(addprefix $(OBJDIR)/, $(SRC:.c=.o))
 
@@ -19,7 +20,7 @@ $(OBJDIR)/%.o: %.c
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	$(CC) $(OBJS) -o $@
+	$(CC) $(OBJS) -o $@ $(LDLIBS)
 
 $(OBJS): | $(OBJDIR)
 
