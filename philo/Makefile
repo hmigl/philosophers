@@ -3,10 +3,7 @@ SHELL = /bin/sh
 NAME := philo
 OBJDIR := objdir
 
-# -Werror
-CFLAGS += -Wall -Wextra -pthread -g
-# LDLIBS +=
-# LDFLAGS +=
+CFLAGS += -Wall -Wextra -Werror -pthread -g
 
 OBJS = $(addprefix $(OBJDIR)/, $(SRC:.c=.o))
 
